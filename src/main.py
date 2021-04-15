@@ -19,7 +19,7 @@ class ComparisonRequest(BaseModel):
 class ComparisonResponse(BaseModel):
     score: float
     
-@app.post("/api/v1/comparison")
-def compare(request: ComparisonRequest, response_model=ComparisonResponse):
+@app.post("/api/v1/comparison", response_model=ComparisonResponse)
+def compare(request: ComparisonRequest):
     score = 1.0 if request.person_1.identification_number == request.person_2.identification_number else 0.0
     return { "score": score }
